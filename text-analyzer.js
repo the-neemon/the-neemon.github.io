@@ -1,14 +1,6 @@
-/**
- * Text Analyzer Tool
- * This script analyzes text input and provides statistics on:
- * - Basic metrics (letters, words, spaces, newlines, special symbols)
- * - Pronouns count grouped by pronoun
- * - Prepositions count grouped by preposition
- * - Indefinite articles count grouped by article
- */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Get DOM elements
+
     const textInput = document.getElementById('text-input');
     const analyzeBtn = document.getElementById('analyze-btn');
     const sampleTextBtn = document.getElementById('sample-text-btn');
@@ -21,23 +13,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const articlesCount = document.getElementById('articles-count');
     const wordCountIndicator = document.getElementById('word-count-indicator');
     
-    // Define word lists
+
     const pronounsList = [
-        // Subject pronouns
+
         'i', 'you', 'he', 'she', 'it', 'we', 'they',
-        // Object pronouns
+
         'me', 'him', 'her', 'us', 'them',
-        // Possessive pronouns
+
         'my', 'mine', 'your', 'yours', 'his', 'hers', 'its', 'our', 'ours', 'their', 'theirs',
-        // Reflexive pronouns
+
         'myself', 'yourself', 'himself', 'herself', 'itself', 'ourselves', 'yourselves', 'themselves',
-        // Demonstrative pronouns
+
         'this', 'that', 'these', 'those',
-        // Interrogative pronouns
+
         'who', 'whom', 'whose', 'which', 'what',
-        // Relative pronouns
+
         'who', 'whom', 'whose', 'which', 'that',
-        // Indefinite pronouns
+
         'anybody', 'anyone', 'anything', 'each', 'either', 'everybody', 'everyone', 
         'everything', 'neither', 'nobody', 'nothing', 'one', 'somebody', 'someone', 'something',
         'both', 'few', 'many', 'several', 'all', 'any', 'most', 'none', 'some'
@@ -55,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const indefiniteArticlesList = ['a', 'an'];
     
-    // Update word count indicator on input
     textInput.addEventListener('input', function() {
         const wordCount = textInput.value.trim().split(/\s+/).filter(word => word.length > 0).length;
         wordCountIndicator.textContent = wordCount + ' words';
@@ -67,14 +58,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Event listener for analyze button
+   
     analyzeBtn.addEventListener('click', function() {
         const text = textInput.value;
         
-        // Check if text meets minimum word count
+      
         const wordCount = text.trim().split(/\s+/).filter(word => word.length > 0).length;
         if (wordCount < 10000) {
-            // Show error message
+      
             const errorMessage = document.createElement('div');
             errorMessage.className = 'error-message';
             errorMessage.innerHTML = `
@@ -86,16 +77,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span>Please enter at least 10,000 words for analysis. Current count: ${wordCount} words.</span>
             `;
             
-            // Remove any existing error message
+           
             const existingError = document.querySelector('.error-message');
             if (existingError) {
                 existingError.remove();
             }
-            
-            // Add error message after button
+      
             analyzeBtn.parentNode.insertBefore(errorMessage, analyzeBtn.nextSibling);
             
-            // Remove error message after 5 seconds
+         
             setTimeout(() => {
                 errorMessage.classList.add('fade-out');
                 setTimeout(() => {
@@ -106,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Show loading indicator
+       
         analyzeBtn.disabled = true;
         analyzeBtn.innerHTML = `
             <svg class="spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -116,15 +106,14 @@ document.addEventListener('DOMContentLoaded', function() {
             Analyzing...
         `;
         
-        // Use setTimeout to allow UI to update
+  
         setTimeout(function() {
-            // Perform analysis
+           
             analyzeText(text);
             
-            // Show results
+           
             analysisResults.classList.remove('hidden');
-            
-            // Reset button
+      
             analyzeBtn.disabled = false;
             analyzeBtn.innerHTML = `
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -133,14 +122,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 Analyze Text
             `;
             
-            // Scroll to results
+          
             analysisResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 100);
     });
     
-    // Event listener for sample text button
+
     sampleTextBtn.addEventListener('click', function() {
-        // Complete sample text in one variable
+        
         const sampleText = `1. Abstract (300 words)
 Artificial Intelligence (AI) has transitioned from a theoretical concept to a transformative force reshaping industries, economies, and everyday life. This essay examines the evolution of AI from its nascent stages to its current sophisticated incarnations, highlighting pivotal technological breakthroughs and historical milestones that have defined the field. We discuss key technologies—including machine learning, deep learning, natural language processing, and robotics—that have enabled AI to permeate diverse sectors such as healthcare, finance, transportation, and education.
 
@@ -605,7 +594,7 @@ The conversation around AI is ongoing and dynamic. As new technologies emerge, s
 
 `;
         
-        // Set the sample text and update word count
+        
         textInput.value = sampleText;
         const wordCount = sampleText.trim().split(/\s+/).filter(word => word.length > 0).length;
         wordCountIndicator.textContent = wordCount + ' words';
@@ -616,7 +605,7 @@ The conversation around AI is ongoing and dynamic. As new technologies emerge, s
             wordCountIndicator.classList.remove('sufficient');
         }
         
-        // Show success message
+       
         const message = document.createElement('div');
         message.className = 'success-message';
         message.innerHTML = `
@@ -627,16 +616,16 @@ The conversation around AI is ongoing and dynamic. As new technologies emerge, s
             <span>Sample text loaded successfully with ${wordCount} words</span>
         `;
         
-        // Remove any existing message
+       
         const existingMessage = document.querySelector('.success-message');
         if (existingMessage) {
             existingMessage.remove();
         }
         
-        // Add message after button
+       
         sampleTextBtn.parentNode.insertBefore(message, sampleTextBtn.nextSibling);
         
-        // Remove message after 3 seconds
+        
         setTimeout(() => {
             message.classList.add('fade-out');
             setTimeout(() => {
@@ -645,7 +634,7 @@ The conversation around AI is ongoing and dynamic. As new technologies emerge, s
         }, 3000);
     });
     
-    // Event listener for clear text button
+    
     clearTextBtn.addEventListener('click', function() {
         textInput.value = '';
         wordCountIndicator.textContent = '0 words';
@@ -653,19 +642,19 @@ The conversation around AI is ongoing and dynamic. As new technologies emerge, s
         analysisResults.classList.add('hidden');
     });
     
-    // Event listener for download results button
+    
     downloadResultsBtn.addEventListener('click', function() {
         if (analysisResults.classList.contains('hidden')) {
             return;
         }
         
-        // Collect results data
+        
         const basicStatsText = basicStats.innerText;
         const pronounsText = pronounsCount.innerText;
         const prepositionsText = prepositionsCount.innerText;
         const articlesText = articlesCount.innerText;
         
-        // Format as text
+       
         const resultsText = `
 Text Analysis Results
 ============================
@@ -690,7 +679,7 @@ ${articlesText}
 Analysis generated on: ${new Date().toLocaleString()}
         `.trim();
         
-        // Create download link
+        
         const blob = new Blob([resultsText], { type: 'text/plain' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -699,23 +688,23 @@ Analysis generated on: ${new Date().toLocaleString()}
         document.body.appendChild(a);
         a.click();
         
-        // Clean up
+       
         setTimeout(() => {
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }, 0);
     });
     
-    // Function to analyze text
+    
     function analyzeText(text) {
-        // Basic statistics
+        
         const letterCount = (text.match(/[a-zA-Z]/g) || []).length;
         const wordCount = text.trim().split(/\s+/).filter(word => word.length > 0).length;
         const spaceCount = (text.match(/\s/g) || []).length;
         const newlineCount = (text.match(/\n/g) || []).length;
         const specialSymbolCount = (text.match(/[^\w\s]/g) || []).length;
         
-        // Display basic statistics
+        
         basicStats.innerHTML = `
             <div class="stat-grid">
                 <div class="stat-item">
@@ -741,54 +730,54 @@ Analysis generated on: ${new Date().toLocaleString()}
             </div>
         `;
         
-        // Tokenize text
+        
         const tokens = tokenizeText(text);
         
-        // Count word types
+        
         const pronounCounts = countWordsByType(tokens, pronounsList);
         const prepositionCounts = countWordsByType(tokens, prepositionsList);
         const articleCounts = countWordsByType(tokens, indefiniteArticlesList);
         
-        // Display word counts
+        
         displayWordCounts(pronounCounts, pronounsCount, 'Pronouns');
         displayWordCounts(prepositionCounts, prepositionsCount, 'Prepositions');
         displayWordCounts(articleCounts, articlesCount, 'Indefinite Articles');
     }
     
-    // Function to tokenize text into words
+    
     function tokenizeText(text) {
-        // Convert to lowercase and replace non-alphanumeric with space
+        
         const cleanText = text.toLowerCase().replace(/[^\w\s']|_/g, ' ');
         
-        // Split by whitespace and filter out empty strings
+      
         return cleanText.split(/\s+/).filter(word => word.length > 0);
     }
     
-    // Function to count occurrences of words from a specific list
+    
     function countWordsByType(tokens, wordList) {
         const counts = {};
         
-        // Initialize counts for all words in the list
+        
         wordList.forEach(word => {
             counts[word] = 0;
         });
         
-        // Count occurrences
+        
         tokens.forEach(token => {
             if (wordList.includes(token)) {
                 counts[token]++;
             }
         });
         
-        // Filter out words with zero count
+        
         return Object.fromEntries(
             Object.entries(counts).filter(([_, count]) => count > 0)
         );
     }
     
-    // Function to display word counts
+    
     function displayWordCounts(counts, container, type) {
-        // Sort by count (descending)
+       
         const sortedEntries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
         
         if (sortedEntries.length === 0) {
@@ -796,7 +785,7 @@ Analysis generated on: ${new Date().toLocaleString()}
             return;
         }
         
-        // Create display HTML
+        
         let html = '<div class="counts-table">';
         
         sortedEntries.forEach(([word, count]) => {
@@ -815,7 +804,7 @@ Analysis generated on: ${new Date().toLocaleString()}
         
         html += '</div>';
         
-        // Update container
+        
         container.innerHTML = html;
     }
 });

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Naman Singhal | Personal Portfolio</title>
-    <!-- Add preload dark theme styles to prevent flash of light mode -->
     <style>
         body {
             background-color: #121212;
@@ -19,9 +18,7 @@
     <meta name="description" content="Personal portfolio website showcasing my skills, education, and projects">
     <meta name="theme-color" content="#121212">
 </head>
-<!-- Add dark-theme class to body by default -->
 <body class="dark-theme">
-    <!-- Enhanced Background Elements -->
     <div class="gradient-background"></div>
     <div class="blob-container">
         <div class="blob blob-1"></div>
@@ -31,13 +28,10 @@
     <div class="noise-overlay"></div>
     <div class="grid-pattern"></div>
 
-    <!-- Existing Background Shapes -->
     <div class="shape shape-1"></div>
     <div class="shape shape-2"></div>
     <div class="shape shape-3"></div>
 
-
-    <!-- Preloader -->
     <div class="preloader">
         <div class="loader"></div>
     </div>
@@ -141,7 +135,6 @@
                             <img src="./images/hometown3.jpg" alt="Greater Noida" class="hometown-img">
                             <div class="image-caption">Greater Noida</div>
                         </div>
-                        <!-- Additional gallery items - you can add more images here -->
                         <div class="gallery-item">
                             <img src="./images/hometown4.jpeg" alt="Qutub Minar" class="hometown-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'250\' height=\'220\' viewBox=\'0 0 250 220\'%3E%3Crect width=\'250\' height=\'220\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' font-size=\'18\' text-anchor=\'middle\' fill=\'%23999\' dominant-baseline=\'middle\'%3EQutub Minar%3C/text%3E%3C/svg%3E';">
                             <div class="image-caption">Qutub Minar, Delhi</div>
@@ -560,14 +553,11 @@
                 <div class="footer-section">
                     <h3>Follow Me</h3>
                     <div class="social-links">
-                        <!-- GitHub Icon -->
                         <a href="https://github.com/the-neemon" target="_blank" class="social-icon" title="GitHub">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                             </svg>
                         </a>
-                        
-                        <!-- LinkedIn Icon -->
                         <a href="https://www.linkedin.com/in/naman-singhal2006" target="_blank" class="social-icon" title="LinkedIn">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
@@ -575,8 +565,6 @@
                                 <circle cx="4" cy="4" r="2"></circle>
                             </svg>
                         </a>
-                        
-                        <!-- X (formerly Twitter) Icon - Updated to official X logo -->
                         <a href="https://x.com/yourusername" target="_blank" class="social-icon" title="X (formerly Twitter)">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
@@ -596,14 +584,11 @@
     <script src="./text-analyzer.js"></script>
     <script src="./interactive.js"></script>
     <script>
-        // Preloader
         window.addEventListener('load', function() {
             setTimeout(function() {
                 document.querySelector('.preloader').classList.add('fade-out');
             }, 500);
         });
-        
-        // Word Count Indicator
         const textInput = document.getElementById('text-input');
         const wordCountIndicator = document.getElementById('word-count-indicator');
         
@@ -620,7 +605,6 @@
             });
         }
         
-        // Clear text button
         const clearTextBtn = document.getElementById('clear-text-btn');
         if (clearTextBtn && textInput && wordCountIndicator) {
             clearTextBtn.addEventListener('click', function() {
@@ -629,8 +613,7 @@
                 wordCountIndicator.classList.remove('sufficient');
             });
         }
-        
-        // Custom cursor
+    
         const cursor = document.querySelector('.custom-cursor');
         
         document.addEventListener('mousemove', (e) => {
@@ -646,7 +629,6 @@
             cursor.classList.remove('active');
         });
         
-        // Add hover effect to interactive elements
         const interactiveElements = document.querySelectorAll('a, button, .cv-link, .skill-tag, .social-icon');
         
         interactiveElements.forEach(element => {
