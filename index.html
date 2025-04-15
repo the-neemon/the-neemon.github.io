@@ -613,33 +613,6 @@
                 wordCountIndicator.classList.remove('sufficient');
             });
         }
-    
-        const cursor = document.querySelector('.custom-cursor');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            if (!cursor.classList.contains('active')) {
-                cursor.classList.add('active');
-            }
-        });
-        
-        document.addEventListener('mouseout', () => {
-            cursor.classList.remove('active');
-        });
-        
-        const interactiveElements = document.querySelectorAll('a, button, .cv-link, .skill-tag, .social-icon');
-        
-        interactiveElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-            });
-            
-            element.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-            });
-        });
     </script>
 </body>
 </html>
