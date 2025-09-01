@@ -205,11 +205,11 @@ function initHometownGalleryScroll() {
     
 
     leftIndicator.addEventListener('click', () => {
-        gallery.scrollBy({ left: -600, behavior: 'smooth' });
+        gallery.scrollBy({ left: -320, behavior: 'smooth' });
     });
     
     rightIndicator.addEventListener('click', () => {
-        gallery.scrollBy({ left: 600, behavior: 'smooth' });
+        gallery.scrollBy({ left: 320, behavior: 'smooth' });
     });
     
     
